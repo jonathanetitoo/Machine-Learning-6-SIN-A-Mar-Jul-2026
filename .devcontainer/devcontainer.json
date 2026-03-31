@@ -2,7 +2,7 @@
     // Orquestador de todas las imágenes de docker que se creen
     "name": "ML Workshop 2 - Work Environment",
     "build" : {
-        "dockerfile" : "Dcockerfile"
+        "dockerfile" : "Dockerfile"
     },
 
     "customizations" : {
