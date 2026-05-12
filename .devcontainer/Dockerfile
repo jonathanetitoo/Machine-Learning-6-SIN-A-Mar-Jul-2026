@@ -1,24 +1,21 @@
-FROM python:3.12-slim
+FROM mcr.microsoft.com/devcontainers/python:1-3.11-bookworm
 
-RUN apt-get update && apt-get install -y \
-curl \
-git \
-git-lfs \
-&& rm -rf /var/lib/apt/lists/*
+# Instalar uv (gestor rápido de paquetes)
+RUN pip install --no-cache-dir uv
 
-RUN git lfs install --system
+WORKDIR /workspace
 
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+# Copiar archivos de dependencias primero (mejor caching de Docker)
+COPY pyproject.toml uv.lock ./
 
-ENV PATH="/root/.local/bin:$PATH"
+# Crear venv y sincronizar con --python (CRÍTICO en Docker)
+RUN uv venv .venv --python 3.11 \
+ && uv pip install --python .venv/bin/python -r pyproject.toml
 
-WORKDIR /app
+# Activar el venv para sesiones interactivas
+ENV PATH="/workspace/.venv/bin:$PATH"
+ENV VIRTUAL_ENV="/workspace/.venv"
 
-RUN uv venv .env_DO
-
-COPY requirements.txt .
-
-RUN uv pip install --python .env_DO/bin/python -r requirements.txt
-
-ENV VIRTUAL_ENV=/app/.env_DO
-ENV PATH="/app/.env_DO/bin:$PATH"
+# Registrar kernel de Jupyter
+RUN .venv/bin/python -m ipykernel install --user --name ml-p2 \
+    --display-name "Python (ML P2)"

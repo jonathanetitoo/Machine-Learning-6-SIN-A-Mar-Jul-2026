@@ -1,0 +1,21 @@
+[project]
+name = "ml-final-project-p2"
+version = "0.1.0"
+description = "Linear & Logistic Regression on Student Performance with TensorFlow"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "tensorflow>=2.16,<2.18",
+    "pandas>=2.2",
+    "numpy>=1.26,<2.1",
+    "scikit-learn>=1.5",
+    "matplotlib>=3.9",
+    "seaborn>=0.13",
+    "jupyter>=1.0",
+    "ipykernel>=6.29",
+    "ucimlrepo>=0.0.7",
+]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[tool.hatch.build.targets.wheel]
+packages = ["notebooks"]    

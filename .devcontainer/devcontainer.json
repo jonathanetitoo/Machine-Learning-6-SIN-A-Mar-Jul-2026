@@ -1,23 +1,21 @@
 {
-    "name": "ML Workshop 2 - Work Environment",
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
-
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-python.python",
-                "ms-toolsai.jupyter",
-                "ms-toolsai.jupyter-renderers",
-                "charliermarsh.ruff",
-                "ms-azuretools.vscode-containers"
-            ],
-            "settings": {
-                "python.defaultInterpreterPath": "/app/.env_DO/bin/python",
-                "jupyter.notebookFileRoot": "${workspaceFolder}"
-            }
-        }
-    },
-    "postCreateCommand": "echo 'source /app/.env_DO/bin/activate' >> ~/.bashrc"
+  "name": "ML Final Project P2",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/workspace/.venv/bin/python"
+      }
+    }
+  },
+  "postCreateCommand": "echo Container listo. Abre notebooks/main.ipynb",
+  "remoteUser": "vscode"
 }
