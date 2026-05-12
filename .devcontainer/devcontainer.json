@@ -4,18 +4,17 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
+
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
         "ms-toolsai.jupyter",
         "ms-python.vscode-pylance"
-      ],
-      "settings": {
-        "python.defaultInterpreterPath": "/workspace/.venv/bin/python"
-      }
+      ]
     }
   },
+
   "postCreateCommand": "echo Container listo. Abre notebooks/main.ipynb",
   "remoteUser": "vscode"
 }
